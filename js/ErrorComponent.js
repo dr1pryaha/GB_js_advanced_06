@@ -1,8 +1,9 @@
 Vue.component("error-item", {
-  props: ["products"],
+  props: ["error"],
+
   template: `
-<div class="error-item">
-  <p v-if="!products.length">Что-то пошло не так!!!</p>
-</div>
-`,
+    <div v-if="error !== ''" class="error-item">
+      <p>{{ error }}</p>
+    </div>
+  `,
 });

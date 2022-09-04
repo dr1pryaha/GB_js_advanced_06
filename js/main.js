@@ -14,13 +14,16 @@ const app = new Vue({
     imgCart: "https://placehold.it/50x100",
     products: [],
     imgProduct: "https://placehold.it/200x150",
-    error: false,
+    error: "",
   },
   methods: {
     getJson(url) {
       return fetch(url)
         .then(result => result.json())
-        .catch(error => console.log(error));
+        .catch(error => {
+          this.error = error;
+          return this.error;
+        });
     },
     addProduct(item) {
       this.getJson(`${API}/addToBasket.json`).then(data => {
@@ -39,7 +42,6 @@ const app = new Vue({
     },
     remove(item) {
       this.getJson(`${API}/addToBasket.json`).then(data => {
-        console.log("Клик");
         if (data.result === 1) {
           if (item.quantity > 1) {
             item.quantity--;
@@ -55,12 +57,12 @@ const app = new Vue({
     },
   },
   mounted() {
-    this.getJson(`${API + this.cartUrl}`).then(data => {
+    this.getJson(`${API + this.cartsUrl}`).then(data => {
       for (let item of data.contents) {
         this.$data.cartItems.push(item);
       }
     });
-    this.getJson(`${API + this.catalogUrl}`).then(data => {
+    this.getJson(`${API + this.catalogsUrl}`).then(data => {
       for (let item of data) {
         this.$data.products.push(item);
         this.$data.filtered.push(item);
