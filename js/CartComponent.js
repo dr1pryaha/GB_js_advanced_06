@@ -1,16 +1,16 @@
-Vue.component('cart', {
-    props: ['cartItems', 'img', 'visibility'],
-    template: `
+Vue.component("cart", {
+  props: ["cartItems", "img", "visibility"],
+  template: `
         <div class="cart-block" v-show="visibility">
             <cart-item v-for="item of cartItems" :key="item.id_product" :img="img" :cart-item="item">
             </cart-item>
         </div>
-    `
+    `,
 });
 
-Vue.component('cart-item', {
-    props: ['img', 'cartItem'],
-    template: `
+Vue.component("cart-item", {
+  props: ["img", "cartItem"],
+  template: `
     <div class="cart-item">
                     <div class="product-bio">
                         <img :src="img" alt="Some img">
@@ -25,5 +25,5 @@ Vue.component('cart-item', {
                         <button class="del-btn" @click="$root.remove(cartItem)">&times;</button>
                     </div>
                 </div>
-    `
-})
+    `,
+});

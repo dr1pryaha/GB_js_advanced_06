@@ -1,5 +1,5 @@
 Vue.component("search-line", {
-  // props: ["userSearch", "product", "img"],
+  // props: ["product", "img"],
   data() {
     return {
       userSearch: "",
